@@ -2,12 +2,12 @@ import markersRoute from "./routes/markers.route";
 
 const express = require('express')
 const bodyParser = require('body-parser');
-export const app = express()
+export const index = express()
 const port = 3005
 
 
-app.use(bodyParser.json());
-app.get('/', (req, res) => {
+index.use(bodyParser.json());
+index.get('/', (req, res) => {
   try{
       console.log(req.body.movie);
       return res.json({
@@ -24,10 +24,10 @@ app.get('/', (req, res) => {
   }
 })
 
-app.use('/markers',markersRoute);
+index.use('/markers',markersRoute);
 
 
-app.listen(port, () => {
+index.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
 

@@ -1,35 +1,14 @@
-import {app} from "./app";
+import bd from '../controllers/db.js';
+// TODO : ajouter les controllers des markers
+export const getMarkers = (req, res) => {
+    res.setHeader('content-type', 'application/json');
+    let sql = `SELECT *
+               FROM markers`;
+    bd.all(sql, [], (err, rows) => {
+        if (err) {
+            throw err;
+        }
+        res.json(rows);
+    });
+}
 
-let sql;
-app.get('/markers', (req, res) => {
-    sql = "SELECT * FROM markers";
-    try {
-        console.log(req.body.movie);
-
-        return res.json({
-            status: 200,
-            success: true,
-        });
-    } catch (e) {
-        console.log(e)
-        return res.json({
-            status: 400,
-            success: false,
-        });
-
-    }
-})
-
-app.post('/markers', (req, res) => {
-    try {
-
-
-    } catch (e) {
-
-        return res.json({
-            status: 400,
-            success: false,
-        });
-
-    }
-})
