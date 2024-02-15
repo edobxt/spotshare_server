@@ -1,34 +1,22 @@
-import markersRoute from "./routes/markers.route";
+import express from "express"
+import cors from "cors"
 
-const express = require('express')
-const bodyParser = require('body-parser');
-export const index = express()
-const port = 3005
+import usersRoutes from "./routes/users.route.js"
 
+const app = express()
+const port = 3300
 
-index.use(bodyParser.json());
-index.get('/', (req, res) => {
-  try{
-      console.log(req.body.movie);
-      return res.json({
-          status: 200,
-          success: true,
-      });
-  }catch (e) {
-      console.log(e)
-      return res.json({
-            status: 400,
-            success: false,
-        });
+app.use(express.json())
+app.use(cors({
+  origin: '*'
+}))
 
-  }
+app.get("/", (req, res) => {
+  res.send("Bienvenue sur l'API SpotShare.")
 })
 
-index.use('/markers',markersRoute);
+app.use("/users", usersRoutes)
 
-
-index.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+app.listen(port, () => {
+  console.log(`API SpotShare lancé sur le port ${port}.`)
 })
-
-
