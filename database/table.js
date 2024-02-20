@@ -71,5 +71,4 @@ db.run(sqlCreateTableMarkers, (err) => {
     console.log('Markers table created or already exists.');
 });
 
-// Close the database connection
 
