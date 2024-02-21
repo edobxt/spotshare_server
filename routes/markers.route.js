@@ -1,12 +1,27 @@
-// TODO : ajouter les routes des markers
 
+import express from "express";
+import {
+    addMarker, deleteMarker,
+    getAllMarkers,
+    getMarkerById,
+    getMarkersByVisibilityAndUserId,
+    updateMarker
+} from "../controllers/markers.controllers.js";
 
-import express from 'express';
-import {getMarkers} from "../controllers/markers.controllers";
 
 const markersRoute = express.Router();
 
-markersRoute.route('').get(getMarkers);
+markersRoute.route('').get(getMarkersByVisibilityAndUserId);
+
+markersRoute.route('/:id').get(getMarkerById);
+
+markersRoute.route('/all').get(getAllMarkers);
+
+markersRoute.route('/').post(addMarker);
+
+markersRoute.route('/').put(updateMarker);
+
+markersRoute.route('/:id').delete(deleteMarker);
 
 
-export default listeRouter;
+export default markersRoute;

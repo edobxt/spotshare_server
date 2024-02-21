@@ -3,6 +3,8 @@ import cors from "cors"
 
 import usersRoutes from "./routes/users.route.js"
 import initRoutes from "./routes/init.route.js";
+import markersRoute from "./routes/markers.route.js";
+import {generateRoutesHtml, listAllRoutes} from "./controllers/home.controllers.js";
 
 const app = express()
 const port = 3300
@@ -13,12 +15,17 @@ app.use(cors({
 }))
 
 app.get("/", (req, res) => {
-    res.send("Bienvenue sur l'API SpotShare.")
+    //res.send("Bienvenue sur l'API SpotShare.")
+    res.send(generateRoutesHtml(app));
+
 })
 
 app.use("/users", usersRoutes)
 
 app.use("/init", initRoutes)
+
+app.use("/markers", markersRoute)
+
 
 app.listen(port, () => {
     console.log(`API SpotShare lancé sur le port ${port}.`)
