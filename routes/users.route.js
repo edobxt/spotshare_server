@@ -8,6 +8,7 @@ import {
     loginUser,
     updateUser
 } from "../controllers/users.controllers.js"
+import {getCollectionsByUserId} from "../controllers/collections.controllers.js";
 
 const usersRoutes = express.Router()
 
@@ -24,5 +25,7 @@ usersRoutes.route("/login").post(loginUser)
 usersRoutes.route("/:id").put(updateUser)
 
 usersRoutes.route("delete/:id").delete(deleteUser)
+
+usersRoutes.route("/:id/collections").get(getCollectionsByUserId)
 
 export default usersRoutes

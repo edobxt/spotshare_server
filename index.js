@@ -15,7 +15,6 @@ app.use(cors({
 }))
 
 app.get("/", (req, res) => {
-    //res.send("Bienvenue sur l'API SpotShare.")
     res.send(generateRoutesHtml(app));
 
 })
