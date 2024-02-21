@@ -1,1 +1,8 @@
-// TODO : Ajouter les routes pour initialiser la base de données depuis l'api karu data
+import express from "express";
+import {init} from "../controllers/init.controllers.js";
+
+const initRoutes = express.Router();
+
+initRoutes.route("").get(init)
+
+export default initRoutes;
