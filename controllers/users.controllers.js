@@ -68,13 +68,14 @@ export const createUser = async (req, res) => {
 
 export const loginUser = (req, res) => {
     const { mail, password } = req.body;
-
+    
     const sql = `SELECT * FROM users WHERE mail = ?`;
     db.get(sql, [mail], async (err, user) => {
         if (err) {
             res.status(500).json({ error: err.message });
             return;
         }
+        console.log(user)
         if (!user) {
             res.status(404).json({ message: "Utilisateur introuvable" });
             return;

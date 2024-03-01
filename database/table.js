@@ -106,6 +106,8 @@ let sqlCreateTableMarkers = `CREATE TABLE IF NOT EXISTS markers
     TEXT
     NOT
     NULL,
+    longitude TEXT NOT NULL,
+  latitude TEXT NOT NULL,
     FOREIGN
     KEY
                              (
