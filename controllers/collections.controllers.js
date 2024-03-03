@@ -46,13 +46,13 @@ export const createCollection = (req, res) => {
 }
 
 export const updateCollection = (req, res) => {
-    const { name,color, user_id,visibility } = req.body;
+    const { name, color} = req.body;
     const id = req.params.id;
-    const sql = `UPDATE collections SET name = ?,color = ?, user_id = ?,visibility = ? WHERE id = ?`;
-    db.run(sql, [name,color, user_id,visibility, id], function(err) {
+    const sql = `UPDATE collections SET name = ?, color = ? WHERE id = ?`;
+    db.run(sql, [name,color, id], function(err) {
         if (err) {
             res.status(500).json({ error: err.message });
-            return;
+            throw err;
         }
         res.json({ message: "Succès", changes: this.changes });
     });

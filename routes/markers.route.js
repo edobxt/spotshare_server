@@ -19,7 +19,7 @@ markersRoute.route('/all').get(getAllMarkers);
 
 markersRoute.route('/').post(addMarker);
 
-markersRoute.route('/').put(updateMarker);
+markersRoute.route('/:id').put(updateMarker);
 
 markersRoute.route('/:id').delete(deleteMarker);
 

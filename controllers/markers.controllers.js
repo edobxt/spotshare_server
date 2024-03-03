@@ -2,7 +2,7 @@ import db from "../database/db.js";
 
 export const getAllMarkers = (req, res) => {
     res.setHeader('content-type', 'application/json');
-    let sql = `SELECT * FROM markers where `;
+    let sql = `SELECT * FROM markers`;
     bd.all(sql, [], (err, rows) => {
         if (err) {
             throw err;
@@ -49,7 +49,7 @@ export const getMarkerById = (req, res) => {
 export const addMarker = (req, res) => {
     res.setHeader('content-type', 'application/json');
     const { name, description, collection_id, location, longitude, latitude } = req.body;
-    let sql = `INSERT INTO markers (name, description, collection_id, location) VALUES (?, ?, ?, ?, ?, ?)`;
+    let sql = `INSERT INTO markers (name, description, collection_id, location, longitude, latitude) VALUES (?, ?, ?, ?, ?, ?)`;
     db.run(sql, [name, description, collection_id, location, longitude, latitude], function(err) {
         if (err) {
             throw err;
@@ -60,10 +60,10 @@ export const addMarker = (req, res) => {
 
 export const updateMarker = (req, res) => {
     res.setHeader('content-type', 'application/json');
-    const { name, description, collection_id, location, longitude, latitude } = req.body;
+    const { name, description } = req.body;
     let id = req.params.id;
-    let sql = `UPDATE markers SET name = ?, description = ?, collection_id = ?, location = ?, longitude = ?, latitude = ? WHERE id = ?`;
-    db.run(sql, [name, description, collection_id, location, longitude, latitude, id], function(err) {
+    let sql = `UPDATE markers SET name = ?, description = ? WHERE id = ?`;
+    db.run(sql, [name, description, id], function(err) {
         if (err) {
             throw err;
         }
